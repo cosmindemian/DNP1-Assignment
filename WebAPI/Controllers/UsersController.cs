@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.LogicInterfaces;
+using Domain.DTOs;
+using Domain.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
