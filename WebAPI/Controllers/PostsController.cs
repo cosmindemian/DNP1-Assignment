@@ -35,7 +35,7 @@ public class PostsController : ControllerBase
         {
             SearchPostParametersDto parameters = new(userName, userId, completedStatus, titleContains);
             var posts = await postLogic.GetAsync(parameters);
-            return Ok(todos);
+            return Ok(posts);
         }
         catch (Exception e)
         {
@@ -45,11 +45,11 @@ public class PostsController : ControllerBase
     }
 
     [HttpPatch]
-    public async Task<ActionResult> UpdateAsync([FromBody] TodoUpdateDto dto)
+    public async Task<ActionResult> UpdateAsync([FromBody] PostUpdateDto dto)
     {
         try
         {
-            await todoLogic.UpdateAsync(dto);
+            await postLogic.UpdateAsync(dto);
             return Ok();
         }
         catch (Exception e)
@@ -64,7 +64,7 @@ public class PostsController : ControllerBase
     {
         try
         {
-            await todoLogic.DeleteAsync(id);
+            await postLogic.DeleteAsync(id);
             return Ok();
         }
         catch (Exception e)
@@ -75,11 +75,11 @@ public class PostsController : ControllerBase
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<TodoBasicDto>> GetById([FromRoute] int id)
+    public async Task<ActionResult<PostBasicDto>> GetById([FromRoute] int id)
     {
         try
         {
-            TodoBasicDto result = await todoLogic.GetByIdAsync(id);
+            PostBasicDto result = await postLogic.GetByIdAsync(id);
             return Ok(result);
         }
         catch (Exception e)
