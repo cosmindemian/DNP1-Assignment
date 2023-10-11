@@ -1,0 +1,20 @@
+{
+  "Users": [
+    {
+      "Id": 1,
+      "UserName": "Alex"
+    }
+  ],
+  "Posts": [
+    {
+      "Id": 1,
+      "Owner": {
+        "Id": 1,
+        "UserName": "Alex"
+      },
+      "Title": "Title1",
+      "Body": "Body1",
+      "IsCompleted": false
+    }
+  ]
+}

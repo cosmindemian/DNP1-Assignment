@@ -24,7 +24,7 @@ public class PostLogic : IPostLogic
             throw new Exception($"User with id {dto.OwnerId} was not found.");
         }
 
-        Post post = new Post(user, dto.Title);
+        Post post = new Post(user, dto.Title, dto.Body);
 
         ValidatePost(post);
 
@@ -63,9 +63,10 @@ public class PostLogic : IPostLogic
 
         User userToUse = user ?? existing.Owner;
         string titleToUse = dto.Title ?? existing.Title;
+        string bodyToUse = dto.Body ?? existing.Body;
         bool completedToUse = dto.IsCompleted ?? existing.IsCompleted;
         
-        Post updated = new (userToUse, titleToUse)
+        Post updated = new (userToUse, titleToUse, bodyToUse)
         {
             IsCompleted = completedToUse,
             Id = existing.Id,
@@ -100,7 +101,7 @@ public class PostLogic : IPostLogic
             throw new Exception($"Post with id {id} not found");
         }
 
-        return new PostBasicDto(post.Id, post.Owner.UserName, post.Title, post.IsCompleted);
+        return new PostBasicDto(post.Id, post.Owner.UserName, post.Title, post.Body, post.IsCompleted);
     }
 
     private void ValidatePost(Post dto)
